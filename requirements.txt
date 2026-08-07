@@ -1,0 +1,92 @@
+# ══════════════════════════════════════════════════════════════════
+# DEPENDENCIAS CORE DEL PROYECTO
+# ══════════════════════════════════════════════════════════════════
+
+# --- Análisis de Datos y Científico ---
+pandas==2.2.3
+numpy==2.2.4
+
+# --- Visualización ---
+matplotlib==3.10.1
+seaborn==0.13.2
+
+# --- MetaTrader 5 (Descarga de Datos) ---
+MetaTrader5==5.0.4510
+
+# --- Reinforcement Learning ---
+stable-baselines3==2.7.0
+sb3-contrib==2.7.0
+gymnasium==1.2.2
+
+# --- Deep Learning (Backend de SB3) ---
+torch==2.5.1
+
+# --- Optimización de Hiperparámetros ---
+optuna==4.6.0
+
+# --- Computación Científica ---
+scipy==1.15.2
+
+# --- Utilidades ---
+tabulate==0.9.0  # Para formato de tablas en análisis
+
+# ══════════════════════════════════════════════════════════════════
+# NOTAS DE INSTALACIÓN
+# ══════════════════════════════════════════════════════════════════
+# 
+# 1. Instalar en entorno virtual:
+#    python -m venv .venv
+#    .venv\Scripts\activate  (Windows)
+#    source .venv/bin/activate  (Linux/Mac)
+#
+# 2. Instalar dependencias:
+#    pip install -r requirements.txt
+#
+# 3. PYTORCH CON GPU (IMPORTANTE):
+#    
+#    A) WINDOWS/LINUX con GPU NVIDIA (CUDA 12.4):
+#       pip uninstall torch  # Desinstalar versión CPU primero
+#       pip install torch --index-url https://download.pytorch.org/whl/cu124
+#    
+#    B) WINDOWS/LINUX sin GPU (solo CPU):
+#       El torch del requirements.txt ya funciona (por defecto es CPU)
+#    
+#    C) macOS (Apple Silicon M1/M2/M3):
+#       pip install torch  # Usa Metal Performance Shaders automáticamente
+#
+# ══════════════════════════════════════════════════════════════════
+
+# ══════════════════════════════════════════════════════════════════
+# FRONTEND (Node.js) - Requisitos para la visualización online
+# ══════════════════════════════════════════════════════════════════
+#
+# Nota: Node.js no se instala vía pip. Para ejecutar la visualización
+# en `frontend_demo/` debes tener instalado Node.js (recomendado >= 18.x)
+# y `npm` o `yarn`.
+#
+# Requisitos mínimos:
+# - Node.js >= 18 (https://nodejs.org/)
+# - npm (incluido con Node) o yarn
+#
+# Pasos rápidos para preparar el frontend:
+# 1) Instalar Node.js (descarga del instalador oficial o gestor de paquetes)
+#    - Windows: https://nodejs.org/en/download/ (elige LTS)
+#    - macOS: brew install node
+#    - Linux: apt/yum/pacman según distribución
+#
+# 2) Instalar dependencias del frontend:
+#    cd frontend_demo
+#    npm install
+#    (o `yarn install` si prefieres yarn)
+#
+# 3) Ejecutar servidor de desarrollo:
+#    npm run dev
+#    Acceso: http://localhost:5173
+#
+# Dependencias frontend relevantes (definidas en frontend_demo/package.json):
+# - react
+# - vite
+# - lightweight-charts
+# - papaparse
+#
+# ══════════════════════════════════════════════════════════════════

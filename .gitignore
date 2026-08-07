@@ -1,0 +1,5 @@
+# IDEs y configuraciones
+.idea/
+
+# Entorno virtual
+venv/

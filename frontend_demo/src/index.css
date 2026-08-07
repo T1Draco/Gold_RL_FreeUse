@@ -1,0 +1,239 @@
+:root {
+  /* Paleta de Colores Profesional (Dark Bloomberg Style) */
+  --bg-dark: #0b0f19;       /* Fondo del Gráfico (Negro profundo) */
+  --bg-panel: #111827;      /* Fondo de Paneles (Gris muy oscuro) */
+  --bg-hover: #1f2937;      /* Hover de botones */
+  --border-color: #374151;  /* Bordes sutiles */
+  
+  --text-main: #f3f4f6;     /* Blanco suave */
+  --text-muted: #9ca3af;    /* Gris texto secundario */
+  
+  /* Colores Semánticos */
+  --accent-blue: #3b82f6;   /* Acción Principal */
+  --trade-green: #10b981;   /* Ganancia / Buy */
+  --trade-red: #ef4444;     /* Pérdida / Sell */
+  --trade-yellow: #eab308;  /* Entrada / Warning */
+}
+
+/* Reset Básico */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* CRUCIAL: Evita que la página entera haga scroll */
+}
+
+/* --- ESTRUCTURA DEL LAYOUT (FLEXBOX) --- */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  width: 100%;
+}
+
+/* 1. Header Fijo Arriba */
+.header {
+  height: 64px;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0; /* No encoger */
+  z-index: 10;
+}
+
+.title-box h1 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.title-box p {
+  font-size: 11px;
+  margin: 2px 0 0 0;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* 2. Cuerpo Principal (Sidebar + Gráfico) */
+.main-layout {
+  display: flex;
+  flex: 1; /* Toma todo el espacio restante debajo del header */
+  overflow: hidden; /* Evita desbordamientos */
+  position: relative;
+}
+
+/* 3. Sidebar Izquierda (Fija) */
+.sidebar {
+  width: 380px; /* Ancho fijo */
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100%;
+  z-index: 5;
+}
+
+.sidebar-section {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Panel de Logs (Flexible) */
+.logs-panel {
+  flex: 1; /* Ocupa todo el espacio vertical sobrante en la sidebar */
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* TRUCO CSS: Permite que el hijo haga scroll dentro de flex */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.logs-header {
+  padding: 12px 20px;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logs-list {
+  flex: 1;
+  overflow-y: auto; /* SCROLL SOLO AQUÍ */
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+/* Estilo de la barra de scroll para Webkit (Chrome/Edge) */
+.logs-list::-webkit-scrollbar { width: 6px; }
+.logs-list::-webkit-scrollbar-track { background: transparent; }
+.logs-list::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+.logs-list::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+.log-entry {
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  border-left: 3px solid transparent; /* Indicador de color a la izquierda */
+  background-color: rgba(255, 255, 255, 0.03);
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+.log-entry:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+/* 4. Área del Gráfico (Derecha) */
+.chart-area {
+  flex: 1; /* Ocupa todo el ancho restante */
+  position: relative;
+  background-color: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Previene desbordamiento de flex */
+}
+
+/* --- COMPONENTES UI --- */
+
+/* Botones */
+.btn {
+  border: none;
+  padding: 0;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background-color: var(--accent-blue);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+  flex: 1; /* Que ocupe espacio */
+}
+.btn-primary:hover { background-color: #2563eb; }
+
+.btn-secondary {
+  background-color: var(--bg-hover);
+  color: white;
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover { background-color: #374151; border-color: #4b5563; }
+
+/* Status Badge (Header) */
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(31, 41, 55, 0.5);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+.status-active {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--trade-green);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+}
+
+/* Slider de Velocidad Personalizado */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--bg-hover);
+  border-radius: 3px;
+  margin-top: 10px;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  cursor: pointer;
+  box-shadow: 0 0 0 2px var(--bg-panel);
+  transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+
+/* Clases de utilidad para colores de texto */
+.text-green { color: var(--trade-green); }
+.text-red { color: var(--trade-red); }
+.text-yellow { color: var(--trade-yellow); }
