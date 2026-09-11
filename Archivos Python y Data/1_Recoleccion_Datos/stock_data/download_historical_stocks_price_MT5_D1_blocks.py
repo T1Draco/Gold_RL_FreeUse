@@ -14,7 +14,8 @@ Propósito:
     un CSV en `raw_data/` con el historial del símbolo.
 
 Entradas/Salidas:
-- Lee la configuración definida abajo (LOGIN, PASSWORD, SERVER, SYMBOL, TIMEFRAME)
+- Lee las credenciales desde `MT5_LOGIN`, `MT5_PASSWORD` y `MT5_SERVER`.
+    El símbolo y el marco temporal se configuran en este archivo.
 - Guarda un archivo CSV en `raw_data/` con nombre `SYMBOL_TIMEFRAME.csv`.
 
 Dependencias y requisitos:
@@ -39,10 +40,6 @@ Notas operativas:
 # ============================================================
 # CONFIGURACIÓN
 # ============================================================
-# NOTA: Estas credenciales deben ser gestionadas de forma segura (e.g., variables de entorno)
-LOGIN = 104549224
-PASSWORD = "..4OQxr/"
-SERVER = "FBS-Demo"
 SYMBOL = "XAUUSD"
 TIMEFRAME = mt5.TIMEFRAME_D1 # Marco temporal diario (D1)
 CHUNK_SIZE = 5000           # Número de barras a descargar por llamada (eficiente para bloques)
@@ -50,9 +47,6 @@ MAX_BARRAS = 100000         # Límite total de barras históricas a intentar des
 PAUSA_SEGUNDOS = 0.25       # Pausa entre llamadas para evitar saturar el servidor de MT5
 # ============================================================
 
-# Recomendación: no dejar `LOGIN`/`PASSWORD` en código. Usar variables de entorno:
-#   LOGIN = int(os.getenv('MT5_LOGIN'))
-#   PASSWORD = os.getenv('MT5_PASSWORD')
 # CHUNK_SIZE y PAUSA_SEGUNDOS se eligen por compromiso entre velocidad y límites
 # del servidor; ajustar para la cuenta / proveedor.
 
@@ -69,6 +63,25 @@ OUTPUT_FILE = os.path.join(RAW_DATA_DIR, f"{SYMBOL}_{TIMEFRAME}.csv")
 #  XAUUSD_86400.csv (dependiendo del valor numérico de mt5.TIMEFRAME_D1).
 # Si prefieres nombres legibles (ej. XAUUSD_D1.csv), reemplazar el uso de
 # `TIMEFRAME` por una etiqueta mapeada antes de construir el nombre de archivo.
+
+
+def cargar_credenciales_mt5() -> tuple[int, str, str]:
+    """Obtiene y valida las credenciales de MT5 desde variables de entorno."""
+    nombres_requeridos = ("MT5_LOGIN", "MT5_PASSWORD", "MT5_SERVER")
+    valores_faltantes = [nombre for nombre in nombres_requeridos if not os.getenv(nombre)]
+    if valores_faltantes:
+        nombres = ", ".join(valores_faltantes)
+        raise RuntimeError(
+            f"Faltan variables de entorno de MT5: {nombres}. "
+            "Configúralas antes de ejecutar el script."
+        )
+
+    try:
+        login = int(os.environ["MT5_LOGIN"])
+    except ValueError as error:
+        raise RuntimeError("MT5_LOGIN debe ser un número entero.") from error
+
+    return login, os.environ["MT5_PASSWORD"], os.environ["MT5_SERVER"]
 
 
 def conectar_mt5(login: int, password: str, server: str) -> bool:
@@ -238,7 +251,13 @@ def main():
     y la descarga inicial de datos históricos de MT5.
     """
     # 1. Conexión a MT5
-    if not conectar_mt5(LOGIN, PASSWORD, SERVER):
+    try:
+        login, password, server = cargar_credenciales_mt5()
+    except RuntimeError as error:
+        print(f"Error de configuración: {error}")
+        return
+
+    if not conectar_mt5(login, password, server):
         return
 
     df_final = pd.DataFrame()

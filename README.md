@@ -146,8 +146,8 @@ cuenta MT5 y descarga los bloques de barras en un CSV.
 
 1. MT5 instalado y una cuenta (demo o real) configurada.
 2. Paquete Python `MetaTrader5` (`pip install MetaTrader5`).
-3. Actualiza las credenciales dentro del script o, idealmente, utiliza variables
-de entorno (`MT5_LOGIN`, `MT5_PASSWORD`, `MT5_SERVER`).
+3. Configura las variables de entorno `MT5_LOGIN`, `MT5_PASSWORD` y
+`MT5_SERVER` antes de ejecutar el script.
 
 ```bash
 cd "Archivos Python y Data/1_Recoleccion_Datos/stock_data"

@@ -96,12 +96,20 @@ python download_historical_stocks_price_MT5_D1_blocks.py
 **Requisitos:**
 - MetaTrader 5 instalado y una cuenta (demo o real) configurada
 - Librería `MetaTrader5`: `pip install MetaTrader5`
-- Credenciales actualizadas en el script (`LOGIN`, `PASSWORD`, `SERVER`)
+- Variables de entorno configuradas: `MT5_LOGIN`, `MT5_PASSWORD` y `MT5_SERVER`
+
+En PowerShell, configúralas solo para la sesión actual antes de ejecutar:
+
+```powershell
+$env:MT5_LOGIN = "tu_login"
+$env:MT5_PASSWORD = "tu_password"
+$env:MT5_SERVER = "tu_servidor"
+```
 
 **Output esperado:**
 ```
 ════════════════════════════════════════════════════════════════
-  Conectado a la cuenta #104549224
+   Conectado a la cuenta #<MT5_LOGIN>
 ════════════════════════════════════════════════════════════════
 
 Descargando histórico de XAUUSD (86400) hacia atrás...
