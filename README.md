@@ -8,7 +8,7 @@
 
 **Agente de trading autónomo usando Recurrent PPO (RPPO) para operar en mercados financieros**
 
-[Características](#características) • [Instalación](#instalación-rápida) • [Uso](#uso) • [Arquitectura](#arquitectura-del-proyecto) • [Resultados](#resultados)
+[Características](#características) • [Instalación](#instalación-rápida) • [Uso](#uso) • [Arquitectura](#arquitectura-del-proyecto) • [Resultados](#resultados-típicos)
 
 </div>
 
