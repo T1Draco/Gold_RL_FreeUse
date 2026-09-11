@@ -93,8 +93,8 @@ Confianza Baja (<60%) → Apuesta 15% del capital
 ### Paso 1: Clonar el Repositorio
 
 ```bash
-git clone https://github.com/T1Draco/Gold-RL-Austranet.git
-cd Gold-RL-Austranet
+git clone https://github.com/T1Draco/Gold-RL-FreeUse.git
+cd Gold-RL-FreeUse
 ```
 
 ### Paso 2: Crear Entorno Virtual
@@ -260,7 +260,7 @@ Esto genera:
 ## Arquitectura del Proyecto
 
 ```
-Gold-RL-Austranet/
+Gold-RL-FreeUse/
 │
 ├── Archivos Python y Data/               # Core: Datos y Entrenamiento RL
 │   │
@@ -812,38 +812,6 @@ Este proyecto incluye documentación completa en la carpeta `/docs/`:
 
 ---
 
-## Roadmap
-
-### Versión 1.0 (Actual)
-- [x] Implementación de RPPO con LSTM
-- [x] Dynamic Position Sizing (DPS)
-- [x] Walk-Forward Validation (24 años, 24 folds)
-- [x] Análisis comparativo vs benchmarks
-- [x] Documentación técnica completa
-
-### Próxima Fase: Deployment (Q2-Q3 2026)
-- [ ] Integración con MetaTrader 5
-- [ ] API REST para predicciones en tiempo real
-- [ ] Exportación de parámetros a formato MT5
-- [ ] Variables macroeconómicas (tasas, VIX, DXY)
-- [ ] Expert Advisor (EA) en MQL5
-
-### Fase Avanzada (Q4 2026 - Q2 2027)
-- [ ] Arquitectura Transformer + attention mechanism
-- [ ] Multi-agent ensemble (especializado por activo)
-- [ ] Multi-timeframe trading (D1, H4, H1, M15)
-- [ ] Soporte para otros activos (Silver, Oil, Copper)
-- [ ] Modelo versioning con MLOps (MLFlow, DVC)
-
-### Producción (Q3 2027+)
-- [ ] Transformer-based architecture con mejor generalización
-- [ ] Meta-learning para adaptación rápida a cambios de régimen
-- [ ] Trading en tiempo real con APIs de brokers
-- [ ] Sistema de alertas y monitoreo 24/7
-- [ ] Auditoría de robustez y stress testing
-
----
-
 ## Ejemplo de Salida
 
 ### Consola (Python Output)
@@ -871,29 +839,6 @@ Gráficos generados:
 
 ---
 
-## Autores
-
-**Gold-RL-Austranet**
-- Martín P.
-- Maria Q.
-- Francisco A.
-
-Universidad Católica del Norte, Coquimbo, Chile
-
----
-
-## Licencia
-
-Copyright (c) 2026 Gold-RL-Austranet - Universidad Católica del Norte
-
-**Código Propietario - Todos los derechos reservados.**
-
-Este software es propiedad de Gold-RL-Austranet y su uso está restringido exclusivamente al cliente Academis.
-
-Contacto: martin.puebla.rivera@gmail.com
-
----
-
 ## Disclaimer
 
 Este software es una herramienta de investigación y desarrollo. **NO constituye asesoramiento financiero ni recomendación de inversión**.
@@ -905,7 +850,7 @@ Este software es una herramienta de investigación y desarrollo. **NO constituye
 - **Uso bajo responsabilidad propia**: El usuario asume todos los riesgos asociados
 - **Requiere supervisión**: Este sistema debe ser monitoreado y recalibrado dado un número apropiado de años
 
-**Gold-RL-Austranet no asume responsabilidad por pérdidas derivadas del uso de este software.**
+**Gold-RL no asume responsabilidad por pérdidas derivadas del uso de este software.**
 
 Consulte a un asesor financiero profesional certificado antes de implementar cualquier estrategia de trading.
 
@@ -928,12 +873,10 @@ Para consultas técnicas, soporte o licenciamiento:
 - **Email:** martin.puebla.rivera@gmail.com
 - **Institución:** Universidad Católica del Norte, Chile
 
-**Nota:** Este es un repositorio privado. El acceso está restringido a personal autorizado.
-
 ---
 
 <div align="center">
 
-**Desarrollado por Gold-RL-Austranet**
+**Desarrollado por Gold-RL**
 
 </div>
